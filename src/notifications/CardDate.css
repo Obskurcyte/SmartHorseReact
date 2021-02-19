@@ -1,0 +1,14 @@
+.container-date {
+    display: flex;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
+    text-align: center;
+    width: 600px;
+}
+
+.date-data {
+    margin-right: 70px;
+}

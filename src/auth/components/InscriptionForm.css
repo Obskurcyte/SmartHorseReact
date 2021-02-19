@@ -1,0 +1,12 @@
+.inscription-container{
+    display: flex;
+    margin-top: 6%;
+    position: absolute; /* postulat de départ */
+    left: 51%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+    top: 35%;
+}
+
+.inscription-form {
+    display: flex;
+}

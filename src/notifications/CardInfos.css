@@ -1,0 +1,24 @@
+.info-container {
+    background-color: white;
+    padding: 10px;
+    font: inherit;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.smarthorse-title {
+    border-bottom: 4px solid black;
+    position: absolute; /* postulat de départ */
+    left: 50%;/* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+    bottom: 95%;
+    display: inline;
+}
+
+.smarthorse-text {
+    margin-top: 60px;
+}
+
+.info-text {
+    position: relative;
+}

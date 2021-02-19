@@ -1,0 +1,15 @@
+.normal-button {
+    border: 1px solid;
+    height: 50px;
+    padding: 7px;
+    width: 170px;
+}
+
+a{
+    color: black !important;
+    text-decoration: none !important;
+}
+
+p {
+    text-decoration: none;
+}

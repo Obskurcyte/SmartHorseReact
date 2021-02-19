@@ -1,0 +1,29 @@
+.footer-container {
+    padding: 10%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-container {
+    text-align: center;
+}
+
+h1 {
+   margin-bottom: 50px !important;
+}
+
+Input {
+    margin-bottom: 30px;
+}
+
+.contact-form {
+    margin-right: 10%;
+    width: 200px;
+}
+
+.contact {
+    background-color: black;
+    color: white;
+    width: 250px;
+}

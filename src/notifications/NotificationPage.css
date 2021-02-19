@@ -1,0 +1,35 @@
+.date {
+    display: flex;
+    margin-left: 55px;
+    margin-top: 5%;
+}
+
+.date-paragraph {
+    margin-right: 80px;
+}
+
+.date-objet {
+    margin-left: 40px;
+}
+
+.date-container2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+.yellow-buttons {
+    display: flex;
+    position: absolute;
+    bottom: 5%;
+}
+
+.notification-container {
+    width: 90%;
+    margin-top: 25%;
+    padding: 5% 10%;
+    height: 650px;
+    position: absolute; /* postulat de départ */
+    left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+}
+

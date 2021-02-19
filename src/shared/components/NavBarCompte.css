@@ -1,0 +1,12 @@
+img {
+    width: 40%;
+}
+
+.nav-logo{
+    margin-right: 100%;
+}
+.nav-links {
+    position: absolute;
+    left: 78%;
+    bottom: 10%;
+}

@@ -1,0 +1,12 @@
+.card-nav {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-container {
+    width: 500px;
+    height: 400px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding-top: 2%;
+}

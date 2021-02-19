@@ -1,8 +1,24 @@
 .nav-element {
-    border-right: 3px solid black!important;
+    border-right: 2px solid black!important;
 }
 
 .nav-horse {
     display: flex;
     flex-direction: row;
 }
+
+.connexion-bouton {
+    position: absolute;
+    left: 86%;
+}
+
+.offre-btn {
+    position: absolute;
+    left: 60%;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+    padding-right: 15px!important;
+    padding-left: 15px!important;
+}
+

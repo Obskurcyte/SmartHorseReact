@@ -2,7 +2,7 @@
     width: 90%;
     margin-top: 20%;
     padding: 5% 10%;
-    height: 550px;
+    height: 600px;
     position: absolute; /* postulat de départ */
     left: 50%; /* à 50%/50% du parent référent */
     transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
@@ -14,12 +14,27 @@
     transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
 }
 
+.form-check {
+    width: 600px!important;
+    position: absolute;
+    display: block;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 100px;
+    padding-left: 1.25rem;
+}
 
-.inscription-container{
-    display: flex;
-    margin-top: 7%;
+.form-center {
     position: absolute; /* postulat de départ */
     left: 50%; /* à 50%/50% du parent référent */
     transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
-    bottom: 6%;
+    top: 80%
+}
+
+.bouton-inscrire {
+    position: absolute;
+    left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+    top: 90%;
+    width: 20%;
 }
