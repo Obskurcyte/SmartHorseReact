@@ -1,0 +1,39 @@
+.container {
+    width: 90%;
+    margin-top: 10%;
+    padding: 5% 10%;
+    height: 500px
+}
+
+.title {
+    position: absolute; /* postulat de départ */
+    left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+}
+
+.inner-title {
+    position: absolute; /* postulat de départ */
+    left: 50%;/* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+    margin-top: 3%;
+}
+
+h1 {
+    font-family: "Trebuchet MS", serif;
+    font-size: 70px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    position: absolute; /* postulat de départ */
+    left: 50%;/* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+    bottom: 5%;
+}
+
+.horizontal-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

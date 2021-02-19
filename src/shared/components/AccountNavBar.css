@@ -1,0 +1,8 @@
+.nav-element {
+    border-right: 3px solid black!important;
+}
+
+.nav-horse {
+    display: flex;
+    flex-direction: row;
+}
