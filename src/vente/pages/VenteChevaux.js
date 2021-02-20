@@ -34,7 +34,8 @@ const VenteChevaux = props => {
       const contrat = new web3.eth.Contract(abi, '0x9D2C75FbB4BEC51b8B8A960A756604829179b1AD', {})
 
 
-      const accounts = await web3.eth.getAccounts().then(accs => setState({compteConnecte: accs[0]}))
+      const accounts = await web3.eth.getAccounts()
+      setState({compteConnecte: accounts[0]})
       console.log(state.compteConnecte)
       console.log(accounts)
       setState({contrat: contrat})
