@@ -31,9 +31,12 @@ const VenteChevaux = props => {
       await Web3.givenProvider.enable();
       console.log('Provider', Web3.givenProvider)
       const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545")
-      const contrat = new web3.eth.Contract(abi, '0x69EEba57496983705D670BEC0835dba42142bbbE', {})
+      const contrat = new web3.eth.Contract(abi, '0x9D2C75FbB4BEC51b8B8A960A756604829179b1AD', {})
 
-      web3.eth.getAccounts().then(accs => setState({compteConnecte: accs[0]}))
+
+      const accounts = await web3.eth.getAccounts().then(accs => setState({compteConnecte: accs[0]}))
+      console.log(state.compteConnecte)
+      console.log(accounts)
       setState({contrat: contrat})
 
       const total = await contrat.methods.totalCheval().call();
