@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Colors from "../../shared/constants/Colors";
 import Input from "../../shared/components/Input";
 import NavBar from "../../shared/components/NavBar";
 import './ConnexionPage.css';
-import {Form} from 'react-bootstrap';
 import Button from "../../FormElements/Button";
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -36,21 +35,31 @@ const ConnexionPage = props => {
         marginTop: 10
     }
 
-
     const initialValues = {
         email: '',
         password: ''
     }
-
     const dispatch = useDispatch();
 
 
-  const token = useSelector(state => state.users.token);
-  console.log(token)
+ // const token = useSelector(state => state.users.token);
 
-  const message1 = useSelector(state => state.users.message1);
-  const message2 = useSelector(state => state.users.message2);
-  console.log(message2)
+
+
+/*  const [message11, setMessage11] = useState([]);
+  const [message12, setMessage12] = useState([]);
+
+ */
+
+ /* useEffect( () => {
+    setMessage11(message1);
+    setMessage12(message2)
+  }, [message1, message2])
+
+  */
+
+  const [messageConnection1, setMessageConnection1] = useState('');
+  const [messageConnection2, setMessageConnection2] = useState('');
 
     return(
         <div>
@@ -63,8 +72,46 @@ const ConnexionPage = props => {
                                     initialValues={initialValues}
                                     validationSchema={SigninSchema}
                                     onSubmit={async (values) => {
-                                        await dispatch(authAction.login(values.email, values.password))
-                                        router.push('/meschevaux')
+
+                                      const email = values.email;
+                                      const password = values.password
+                                      const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDH1AN6NL7ISd5iZbANXjQLHzfHf9nCrJA', {
+                                        method: 'POST',
+                                        headers: {
+                                          'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                          email,
+                                          password,
+                                          returnSecureToken: true,
+                                        })
+                                      })
+                                      const resData = await response.json();
+                                      console.log(resData)
+                                      let token = ''
+                                      if (!response.ok) {
+                                        // const errorId = await response.json();
+                                        console.log(resData.error);
+                                        if (resData.error.message === 'EMAIL_NOT_FOUND') {
+                                          const message1 = "Cet email n'a pas été trouvé"
+                                          console.log(message1)
+                                          await setMessageConnection1(message1)
+                                          console.log(messageConnection1)
+                                        } else if (resData.error.message === 'INVALID_PASSWORD') {
+                                          const message2 = "Mot de passe incorrect"
+                                          await setMessageConnection2(message2)
+                                          console.log(messageConnection2)
+                                        }
+                                      }
+                                      console.log(messageConnection1)
+                                       if (messageConnection1 === '' && messageConnection2 === '') {
+                                        router.push('/ventechevaux')
+                                      }
+
+
+
+
+                                     // await dispatch(authAction.login(values.email, values.password))
                                     }}
                                     /*  const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDH1AN6NL7ISd5iZbANXjQLHzfHf9nCrJA', {
                                         method:  'POST',
@@ -120,8 +167,8 @@ const ConnexionPage = props => {
                                         type="email"
                                         value={props.values.email}
                                     />
-                                    {message1 !== '' ? (
-                                        <div className="forms-error">{message1}</div>
+                                    {messageConnection1 !== '' ? (
+                                        <div className="forms-error">{messageConnection1}</div>
                                     ) : null}
                                     <Input
                                         name="password"
@@ -132,8 +179,8 @@ const ConnexionPage = props => {
                                         type="password"
                                         value={props.values.password}
                                     />
-                                    {message2 !== '' ? (
-                                        <div className="forms-error">{message2}</div>
+                                    {messageConnection2 !== '' ? (
+                                        <div className="forms-error">{messageConnection2}</div>
                                     ) : null}
                                     <div className="connexion-submit">
                                         <Button style={style} type="submit" disabled={!props.isValid} onClick={props.handleSubmit}>CONNEXION</Button>

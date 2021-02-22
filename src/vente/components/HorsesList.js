@@ -6,7 +6,7 @@ import './HorsesList.css'
 import {useDispatch} from "react-redux";
 import * as HorseActions from "../../store/actions/onsale-horses";
 
-/*
+
 const HorsesList = props => {
   const dispatch = useDispatch()
 
@@ -17,9 +17,8 @@ const HorsesList = props => {
             </div>
         );
     }
-    */
 
-   /* return (
+   return (
         <div className="container-horses">
         <ul className="horses-list">
              {props.items.map(horse => {
@@ -32,7 +31,7 @@ const HorsesList = props => {
                         documents={horse.documents}
                         price={horse.prix}
                         bouton={props.bouton}
-                        buyHorse={() => dispatch(HorseActions.deleteHorse(horse.id))}
+                        buyHorse={props.handleClick}
                    />
                 )
             })}
@@ -40,10 +39,9 @@ const HorsesList = props => {
         </div>
 
 
-
+)
 }
 
 export default HorsesList;
 
 
-    */

@@ -2,7 +2,8 @@
     width: 90%;
     margin-top: 10%;
     padding: 5% 10%;
-    height: 500px
+    height: 500px;
+    position: relative;
 }
 
 .title {
@@ -29,11 +30,12 @@ h1 {
     position: absolute; /* postulat de départ */
     left: 50%;/* à 50%/50% du parent référent */
     transform: translate(-50%, -50%);
-    bottom: 5%;
+    bottom: 1%;
 }
 
 .horizontal-buttons {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -92,3 +94,51 @@ input::placeholder {
     text-align: center;
 }
 
+
+/* media queries */
+
+@media (max-width: 1220px) {
+  .inner-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .inner-title {
+    font-size: 1.2rem;
+    margin-top: 5%;
+  }
+
+  .buttons {
+    font-size: 0.8rem;
+  }
+
+  .home-button {
+    width: 100px;
+  }
+
+  .normal-button {
+    width: 100px!important;
+  }
+}
+
+@media (max-width: 967px) {
+  iframe {
+  width: 400px
+  }
+}
+
+@media (max-width: 825px) {
+  .about-smarthorse {
+    flex-direction: column;
+  }
+  .container-smarthorse {
+    width: 100%;
+  }
+  .container-smarthorse h1 {
+    text-align: center;
+  }
+  iframe {
+    width: 100%
+  }
+}

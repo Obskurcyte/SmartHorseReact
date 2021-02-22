@@ -23,6 +23,16 @@ export const abi = [
         "internalType": "address payable",
         "name": "_proprietaire",
         "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_nom",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_image",
+        "type": "string"
       }
     ],
     "name": "ajouterCheval",
@@ -120,6 +130,16 @@ export const abi = [
             "type": "address"
           },
           {
+            "internalType": "string",
+            "name": "nom",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "image",
+            "type": "string"
+          },
+          {
             "internalType": "uint256",
             "name": "prix",
             "type": "uint256"
@@ -157,6 +177,16 @@ export const abi = [
         "internalType": "address payable",
         "name": "proprietaire",
         "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "nom",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "image",
+        "type": "string"
       },
       {
         "internalType": "uint256",

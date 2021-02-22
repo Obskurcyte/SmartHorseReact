@@ -6,7 +6,7 @@ export const SIGN_UP = 'SIGN_UP';
 
 
 
-export const login = (email, password) => {
+/* export const login = (email, password) => {
   return async (dispatch, getState) => {
     console.log(getState)
     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDH1AN6NL7ISd5iZbANXjQLHzfHf9nCrJA', {
@@ -44,6 +44,8 @@ export const login = (email, password) => {
     dispatch({type: LOGIN, token: token, message1: message1, message2: message2} )
   }
 }
+
+ */
 
 export const signup = (email, password) => {
   return async (dispatch) => {

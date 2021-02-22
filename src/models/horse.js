@@ -3,12 +3,16 @@ class Cheval {
     id,
     proprietaire,
     prix,
-    etat
+    etat,
+    image,
+    name
   ) {
     this.id = id;
     this.proprietaire = proprietaire;
     this.prix = prix;
     this.etat = etat;
+    this.image = image;
+    this.name = name;
   }
 }
 

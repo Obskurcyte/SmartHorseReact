@@ -3,7 +3,7 @@ export const GET_USER = 'GET_USER';
 export const GET_HORSES_BY_USER = 'GET_HORSES_BY_USER'
 
 
-export const createUser = (email, name, firstname, phone, activity, denomination, adress, postalcode, city, id) => {
+ export const createUser = (email, name, firstname, phone, activity, denomination, adress, postalcode, city, id) => {
     return async dispatch => {
       const response =  await fetch(`https://smarthorse-3b298-default-rtdb.firebaseio.com/users.json`, {
         method: 'POST',
@@ -37,7 +37,9 @@ export const createUser = (email, name, firstname, phone, activity, denomination
     }
 }
 
-export const getUser = (idToken) => {
+
+
+/* export const getUser = (idToken) => {
   return async dispatch => {
     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDH1AN6NL7ISd5iZbANXjQLHzfHf9nCrJA', {
       method: 'POST',
@@ -53,7 +55,7 @@ export const getUser = (idToken) => {
     console.log(resData)
     console.log(resData.users[0].email)
 
-   const userEmail = resData.users[0].email
+  /* const userEmail = resData.users[0].email
    const userId = resData.users[0].localId
 
     dispatch({
@@ -62,9 +64,11 @@ export const getUser = (idToken) => {
       id: userId
     })
 }
+
+
 }
 
-export const getHorsesByUser = (email) => {
+/* export const getHorsesByUser = (email) => {
   return async dispatch => {
     const response = await fetch(`https://smarthorse-3b298-default-rtdb.firebaseio.com/users.json`)
     const resData = await response.json();
@@ -82,6 +86,8 @@ export const getHorsesByUser = (email) => {
     })
   }
 }
+
+ */
 
 
 

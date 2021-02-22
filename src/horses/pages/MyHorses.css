@@ -1,0 +1,32 @@
+.popper-container {
+  height: 200px;
+  z-index: 1;
+}
+
+.input-popper {
+  position: relative;
+  top: 50%;
+  width: 50%;
+  height: 10%;
+}
+
+.popper-undercontainer {
+  margin-top: 30%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.popper-title {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.bouton-popper {
+  position: relative;
+  top: 10%;
+}
+
+.horse-item {
+  margin-right: 10%;
+  margin-left: 10%;
+}

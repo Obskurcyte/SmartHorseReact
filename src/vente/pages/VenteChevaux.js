@@ -9,16 +9,17 @@ import './VenteChevaux.css'
 import Web3 from "web3";
 import {abi} from "../../abi";
 import Cheval from "../../models/horse";
+import HorseItem from "../components/HorseItem";
 
 const VenteChevaux = props => {
 
 
   const [state, setState] = useState({
     contrat: undefined,
-    compteConnecte: undefined,
   });
 
   const [totalcheval, setTotalCheval] = useState([])
+  const [compteConnecte, setCompteConnecte] = useState('')
 
   const etatCheval = {
     EN_VENTE: "0",
@@ -31,13 +32,13 @@ const VenteChevaux = props => {
       await Web3.givenProvider.enable();
       console.log('Provider', Web3.givenProvider)
       const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545")
-      const contrat = new web3.eth.Contract(abi, '0x9D2C75FbB4BEC51b8B8A960A756604829179b1AD', {})
-
+      const contrat = new web3.eth.Contract(abi, '0x94dce870cc5055C3745f65aC49b741A58af7e33A', {})
 
       const accounts = await web3.eth.getAccounts()
-      setState({compteConnecte: accounts[0]})
-      console.log(state.compteConnecte)
-      console.log(accounts)
+      console.log('accs', accounts);
+      console.log(accounts[0])
+      setCompteConnecte(accounts[0])
+      console.log(compteConnecte)
       setState({contrat: contrat})
 
       const total = await contrat.methods.totalCheval().call();
@@ -52,7 +53,7 @@ const VenteChevaux = props => {
       }
 
       for (let data in chevaux) {
-        totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], chevaux[data][2], chevaux[data][3]))
+        totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], chevaux[data][4], chevaux[data][5], chevaux[data][3], chevaux[data][2]))
       }
       // console.log(totalchevaux)
       setTotalCheval(totalchevaux)
@@ -63,7 +64,7 @@ const VenteChevaux = props => {
     Provider().then(() => console.log())
 
     console.log(totalcheval)
-  }, []);
+  }, [compteConnecte]);
 
     const dispatch = useDispatch();
 
@@ -97,7 +98,7 @@ const VenteChevaux = props => {
           if (state.contrat) {
             const contrat = state.contrat;
             contrat.methods.mettreChevalEnVente(cheval.id, Web3.utils.toWei(cheval.prix))
-              .send({from: state.compteConnecte})
+              .send(compteConnecte)
               .on('transactionHash', hash => {
                 //transaction prise en compte par le provider
               console.log('hash', hash);
@@ -118,7 +119,7 @@ const VenteChevaux = props => {
       if (state.contrat) {
         const contrat = state.contrat;
         contrat.methods.acheterCheval(cheval.id)
-          .send({from: state.compteConnecte, value: Web3.utils.toWei(cheval.prix)})
+          .send({from: compteConnecte, value: Web3.utils.toWei(cheval.prix)})
           .on('transactionHash', hash => {
           console.log('hash', hash)
         })
@@ -132,8 +133,10 @@ const VenteChevaux = props => {
       }
   }
 
+  console.log('totalcheval', totalcheval);
 
     const onSaleHorses = useSelector(state => state.onSaleHorse.onSaleHorses);
+
 
     return (
         <div>
@@ -155,6 +158,8 @@ const VenteChevaux = props => {
 
               <h1>Les chevaux</h1>
 
+
+
               {
                 totalcheval.map((cheval, index) => {
                   return (
@@ -169,26 +174,29 @@ const VenteChevaux = props => {
                 })
               }
 
-              <h1>Mes chevaux</h1>
-              {
-                <p>{state.compteConnecte}</p>
-              }
-              {
-                totalcheval.filter(cheval => cheval.proprietaire === state.compteConnecte)
-                  .map((cheval, index) => {
-                    return (<div>
-                      <p key={index}>{cheval.id} - {cheval.proprietaire} - {Web3.utils.fromWei(cheval.prix, 'ether')}</p>
-                      <input type="text" onChange={() => changerPrix(cheval)} value={cheval.prix}/>
-                      <button onClick={mettreChevalEnVente(cheval)}>Vendre</button>
-                    </div>
-                    )
-                  })
-              }
-
-              {/*} <div className="cards-container">
-                    <HorsesList items={onSaleHorses} bouton="ACHETER"/>
+              <div className="cards-container">
+                <div className="container-horses">
+                  <ul className="horses-list">
+                    {totalcheval.map(horse => {
+                      return (
+                        <HorseItem
+                          key={horse.id}
+                          id={horse.id}
+                          image={horse.image}
+                          name={horse.name}
+                          documents={horse.documents}
+                          price={horse.prix}
+                          bouton="ACHETER"
+                          buyHorse={() => acheterCheval(horse)}
+                        />
+                      )
+                    })}
+                  </ul>
                 </div>
-                */}
+
+                {/*   <HorsesList items={totalcheval} bouton="ACHETER"/> */}
+                </div>
+
             </div>
         </div>
     )
