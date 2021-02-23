@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './HomePage.css';
 import Colors from "../../shared/constants/Colors";
 import YellowButton from "../components/YellowButton";
@@ -7,8 +7,7 @@ import CustomCard from "../components/CustomCard";
 import Footer from "../../shared/components/Footer";
 import NavBar from "../../shared/components/NavBar";
 import NavBarUnderline from "../../shared/components/NavBarUnderline";
-import Web3 from "web3";
-import {abi} from "../../abi";
+
 
 const HomePage = props => {
 

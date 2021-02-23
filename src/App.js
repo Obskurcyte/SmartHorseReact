@@ -1,5 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
-import Web3 from 'web3';
+import React, {useState, useCallback} from 'react';
 import {BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import HomePage from "./home/pages/HomePage";
 import ConnexionPage from "./auth/pages/ConnexionPage";
@@ -22,9 +21,7 @@ import onSaleHorseReducer from "./store/reducers/onsale-horses"
 import {Provider} from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import {combineReducers, createStore, applyMiddleware} from "redux";
-import {abi} from "./abi";
-import {Contract} from 'web3-eth-contract';
-import Cheval from './models/horse';
+
 
 
 

@@ -1,14 +1,12 @@
 import React from "react";
-import CustomCard from "../../home/components/CustomCard";
 import HorseItem from "./HorseItem";
 import './HorseItem'
 import './HorsesList.css'
-import {useDispatch} from "react-redux";
-import * as HorseActions from "../../store/actions/onsale-horses";
+
 
 
 const HorsesList = props => {
-  const dispatch = useDispatch()
+
 
    if (props.items.length === 0) {
         return (

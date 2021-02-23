@@ -2,8 +2,6 @@ import React from "react";
 import './HorseItem.css';
 import {Card} from "react-bootstrap";
 import Button from "../../FormElements/Button";
-import {useDispatch} from "react-redux";
-import * as HorseActions from "../../store/actions/onsale-horses"
 
 
 

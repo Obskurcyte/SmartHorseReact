@@ -1,13 +1,11 @@
-import React, {useEffect} from "react";
-
+import React from "react";
 import './HistoriquePage.css';
 import Colors from "../../shared/constants/Colors";
 import NavBarUnderline from "../../shared/components/NavBarUnderline";
 import HistoriqueCard from "../components/HistoriqueCard";
 import YellowButton from "../../home/components/YellowButton";
 import AccountNavBar from "../../shared/components/AccountNavBar";
-import {useDispatch, useSelector} from "react-redux";
-import * as authActions from '../../store/actions/auth-actions'
+import { useSelector} from "react-redux";
 
 const HistoriquePage = props => {
 

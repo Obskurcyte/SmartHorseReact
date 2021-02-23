@@ -1,7 +1,7 @@
-import React, { useReducer, useEffect } from 'react';
+import React from 'react';
 
 import classes from './Input.css'
-import {validate} from "../util/validators";
+
 
 
 const Input = props => {

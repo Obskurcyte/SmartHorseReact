@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import * as onSaleHorseActions from '../../store/actions/onsale-horses';
-import {useDispatch, useSelector} from "react-redux";
-import HorsesList from "../components/HorsesList";
+import {useDispatch} from "react-redux";
 import AccountNavBar from "../../shared/components/AccountNavBar";
 import Colors from "../../shared/constants/Colors";
 import NavBarUnderline from "../../shared/components/NavBarUnderline";
@@ -32,7 +31,7 @@ const VenteChevaux = props => {
       await Web3.givenProvider.enable();
       console.log('Provider', Web3.givenProvider)
       const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545")
-      const contrat = new web3.eth.Contract(abi, '0x94dce870cc5055C3745f65aC49b741A58af7e33A', {})
+      const contrat = new web3.eth.Contract(abi, '0x9b29e840c36B28FA1644a85Ea785f346933648FF', {})
 
       const accounts = await web3.eth.getAccounts()
       console.log('accs', accounts);
@@ -53,12 +52,22 @@ const VenteChevaux = props => {
       }
 
       for (let data in chevaux) {
-        totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], chevaux[data][4], chevaux[data][5], chevaux[data][3], chevaux[data][2]))
+        totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], Web3.utils.fromWei(chevaux[data][4], 'ether'), chevaux[data][5], chevaux[data][3], chevaux[data][2]))
       }
       // console.log(totalchevaux)
       setTotalCheval(totalchevaux)
       console.log(totalchevaux)
       console.log(totalcheval)
+
+      const web3ws = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:7545'));
+      const contratWs = new web3ws.eth.Contract(abi, '0x9b29e840c36B28FA1644a85Ea785f346933648FF', {});
+      contratWs.events.Vente(null, (err, response) => {
+        if (err) {
+          console.warn('websocket', err)
+          return;
+        }
+        console.log('websocket response', response)
+      })
     }
 
     Provider().then(() => console.log())
@@ -76,44 +85,10 @@ const VenteChevaux = props => {
         setTotalCheval(chevaux)
     }
 
-    const changerPrix = cheval => {
-      return (e) => {
-        cheval.prix = e.currentTarget.value;
-        mettreAJourChevaux(cheval)
-      }
-     /* const input = document.querySelector('input');
-      input.addEventListener('change', e => {
-        cheval.prix = e.target.value
-        console.log(e)
-      })
-      mettreAJourChevaux(cheval)
-      */
-  }
     useEffect(() => {
         dispatch(onSaleHorseActions.fetchOnSaleHorse())
     }, [dispatch]);
 
-    const mettreChevalEnVente = cheval => {
-      return () => {
-          if (state.contrat) {
-            const contrat = state.contrat;
-            contrat.methods.mettreChevalEnVente(cheval.id, Web3.utils.toWei(cheval.prix))
-              .send(compteConnecte)
-              .on('transactionHash', hash => {
-                //transaction prise en compte par le provider
-              console.log('hash', hash);
-            })
-              // transaction traitée
-              .on('confirmation', no => {
-                console.log('conf', no)
-              })
-              .on('error', erreur => {
-                console.log(erreur)
-              })
-              .then(data => console.log('valide', data))
-          }
-      }
-  }
 
   const acheterCheval = (cheval) => {
       if (state.contrat) {
@@ -129,14 +104,15 @@ const VenteChevaux = props => {
           .on('error', erreur => {
           console.log('err', erreur)
         })
-          .then(data => console.log('valide', data))
+          .then(() => {
+            cheval.proprietaire = compteConnecte;
+            cheval.etat = "1";
+            mettreAJourChevaux(cheval);
+          })
       }
   }
 
   console.log('totalcheval', totalcheval);
-
-    const onSaleHorses = useSelector(state => state.onSaleHorse.onSaleHorses);
-
 
     return (
         <div>
@@ -156,39 +132,23 @@ const VenteChevaux = props => {
                     <input type="text" placeholder="RECHERCHER"/>
                 </div>
 
-              <h1>Les chevaux</h1>
-
-
-
-              {
-                totalcheval.map((cheval, index) => {
-                  return (
-                    <div key={index}>
-                    <p>{cheval.id} - {cheval.proprietaire}</p>
-                      {
-                        cheval.etat === etatCheval.EN_VENTE &&
-                        <button onClick={() => acheterCheval(cheval)}>Acheter</button>
-                      }
-                    </div>
-                  )
-                })
-              }
-
-              <div className="cards-container">
+              <div className="cards-container container">
                 <div className="container-horses">
                   <ul className="horses-list">
                     {totalcheval.map(horse => {
                       return (
-                        <HorseItem
-                          key={horse.id}
-                          id={horse.id}
-                          image={horse.image}
-                          name={horse.name}
-                          documents={horse.documents}
-                          price={horse.prix}
-                          bouton="ACHETER"
-                          buyHorse={() => acheterCheval(horse)}
-                        />
+                        (horse.etat === '0') &&
+                      <HorseItem
+                        key={horse.id}
+                        id={horse.id}
+                        image={horse.image}
+                        name={horse.name}
+                        documents={horse.documents}
+                        price={horse.prix}
+                        bouton="ACHETER"
+                        buyHorse={() => acheterCheval(horse)}
+                      />
+
                       )
                     })}
                   </ul>

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
-import YellowButton from "./YellowButton";
 import Button from "../../FormElements/Button";
 
 const CustomCard = props => {

@@ -2,7 +2,7 @@ import {CREATE_USER, GET_HORSES_BY_USER} from '../actions/users-actions.js';
 import {GET_USER} from "../actions/users-actions.js";
 import {LOGIN} from "../actions/auth-actions";
 import {SIGN_UP} from "../actions/auth-actions";
-import {act} from "@testing-library/react";
+
 
 
 const initialState = {

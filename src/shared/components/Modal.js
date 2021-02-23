@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import './Modal.css';
 import ReactDOM from 'react-dom'
 import Backdrop from "./Backdrop";
