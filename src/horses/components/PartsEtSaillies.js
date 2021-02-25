@@ -9,7 +9,7 @@ const PartsEtSaillies = props => {
     return (
         <div>
             <AccountNavBar />
-            <div className="tamere" style={{backgroundColor: Colors.accentColor}}>
+            <div className="horse-ccontainer" style={{backgroundColor: Colors.accentColor}}>
                 <h5 className="horse-title">{props.titre}</h5>
                 <div className="searchbar">
                     <input type="text" placeholder="RECHERCHER"/>

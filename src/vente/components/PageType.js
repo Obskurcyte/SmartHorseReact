@@ -12,7 +12,7 @@ const PageType = props => {
     return (
         <div>
             <AccountNavBar />
-            <div className="tamere" style={{backgroundColor: Colors.accentColor}}>
+            <div className="horse-container" style={{backgroundColor: Colors.accentColor}}>
                 <NavBarUnderline
                     name1="CHEVAUX A VENDRE"
                     navigation1="/ventechevaux"

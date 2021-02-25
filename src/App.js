@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import HomePage from "./home/pages/HomePage";
 import ConnexionPage from "./auth/pages/ConnexionPage";
@@ -15,7 +15,6 @@ import VenteChevaux from "./vente/pages/VenteChevaux";
 import VenteJuments from "./vente/pages/VenteJuments";
 import VenteParts from "./vente/pages/VenteParts";
 import VenteSaillies from "./vente/pages/VenteSaillies";
-import { AuthContext } from "./shared/context/auth-context";
 import userReducer from "./store/reducers/user-reducer";
 import onSaleHorseReducer from "./store/reducers/onsale-horses"
 import {Provider} from 'react-redux';
@@ -23,23 +22,8 @@ import ReduxThunk from 'redux-thunk';
 import {combineReducers, createStore, applyMiddleware} from "redux";
 
 
-
-
-
 const App = () => {
 
-
-
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const login = useCallback(() => {
-    setIsLoggedIn(true)
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false)
-  }, []);
 
   const rootReducer =combineReducers({
     users: userReducer,
@@ -50,13 +34,7 @@ const App = () => {
 
   let routes;
 
-  if (isLoggedIn) {
-    routes = (
-        <React.Fragment>
 
-        </React.Fragment>
-    );
-  } else {
     routes = (
         <Provider store={store}>
         <React.Fragment>
@@ -79,12 +57,10 @@ const App = () => {
         </Provider>
 
     );
-  }
+
 
   return (
-      <AuthContext.Provider
-          value={{isLoggedIn: isLoggedIn, login: login, logout: logout}}
-      >
+
         <Router>
           <main>
             <Switch>
@@ -92,7 +68,6 @@ const App = () => {
             </Switch>
           </main>
         </Router>
-      </AuthContext.Provider>
   );
 }
 
