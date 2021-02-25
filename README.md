@@ -1,10 +1,21 @@
-# Getting Started with Create React App
+# Présentation de SmartHorse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Il s'agit d'une plateforme de vente en ligne de parts et de saillies d'étalons ainsi que de chevaux, dont le processus d'achat-vente s'effectue sur une blockchain. Pour l'instant, la solution n'est pas déployée sur le mainet d'Ethereum donc si vous voulez réaliser des tests, il faudra faire marcher le processus en local. 
 
-## Available Scripts
+## Installation de Ganache 
 
-In the project directory, you can run:
+Ganache permet d'installer une blockchain privée en local sur votre ordinateur. Vous devez télécharger ce logiciel 
+
+## Installation de Metamask
+
+Metamask est un plugin qui s'installe directement sur votre navigateur web (utilisez de préférence chrome ou firefox). Une fois installez vous devrez cliquer sur "importer portefeuille à partir d'une seed" et recopier la seed présente sur Ganache afin de connecter Metamask à votre blockchain présente sur votre ordinateur. 
+
+## Remix 
+
+Remix est un IDE qui permet de coder des smarts contracts sur Ethereum (le fichier sur smart contract se trouve dans Cheval.sol). Pour interagir avec le contrat vous devrez d'abord le copier sur remix (en prenant l'url http et pas https) puis le compiler. Pour le déployer vous devrez sélectionner Web3Provider et rentrer l'url "http://127.0.0.1:7545". 
+Remix sera alors connecté à Ganache. Ensuite, il ne restera plus qu'à executé la fonction ajouterCheval pour ajouter un cheval sur la blockchain et mettreEnVenteCheval pour le mettre en vente (il apparaitra alors dans les offres de vente ! 
+
+
 
 ### `npm start`
 
@@ -14,57 +25,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Note 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Les transactions prennent du temps et je n'ai pas encore pu ajouter de LoadingSpinner donc il faudra attendre un peu pour voir les transactions s'effectuer sur le site
