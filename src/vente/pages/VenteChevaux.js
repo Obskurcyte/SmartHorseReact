@@ -9,6 +9,7 @@ import Web3 from "web3";
 import {abi} from "../../abi";
 import Cheval from "../../models/horse";
 import HorseItem from "../components/HorseItem";
+import {Row, Col} from "react-bootstrap";
 
 const VenteChevaux = props => {
 
@@ -31,7 +32,7 @@ const VenteChevaux = props => {
       await Web3.givenProvider.enable();
       console.log('Provider', Web3.givenProvider)
       const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545")
-      const contrat = new web3.eth.Contract(abi, '0x9b29e840c36B28FA1644a85Ea785f346933648FF', {})
+      const contrat = new web3.eth.Contract(abi, '0x7e0a49ECa03abb104e30853143800b6065a86A63', {})
 
       const accounts = await web3.eth.getAccounts()
       console.log('accs', accounts);
@@ -60,7 +61,7 @@ const VenteChevaux = props => {
       console.log(totalcheval)
 
       const web3ws = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:7545'));
-      const contratWs = new web3ws.eth.Contract(abi, '0x9b29e840c36B28FA1644a85Ea785f346933648FF', {});
+      const contratWs = new web3ws.eth.Contract(abi, '0x7e0a49ECa03abb104e30853143800b6065a86A63', {});
       contratWs.events.Vente(null, (err, response) => {
         if (err) {
           console.warn('websocket', err)
@@ -99,14 +100,16 @@ const VenteChevaux = props => {
           console.log('hash', hash)
         })
           .on('confirmation', no => {
-            console.log('conf', no)
+            return (
+              <p>Transaction ok</p>
+            )
           })
           .on('error', erreur => {
           console.log('err', erreur)
         })
           .then(() => {
             cheval.proprietaire = compteConnecte;
-            cheval.etat = "1";
+            cheval.etat = "2";
             mettreAJourChevaux(cheval);
           })
       }
@@ -117,7 +120,7 @@ const VenteChevaux = props => {
     return (
         <div>
             <AccountNavBar />
-            <div className="tamere" style={{backgroundColor: Colors.accentColor}}>
+          <div className="container-horse" style={{backgroundColor: Colors.accentColor}}>
                 <NavBarUnderline
                     name1="CHEVAUX A VENDRE"
                     navigation1="/ventechevaux"
@@ -132,30 +135,31 @@ const VenteChevaux = props => {
                     <input type="text" placeholder="RECHERCHER"/>
                 </div>
 
-              <div className="cards-container container">
-                <div className="container-horses">
-                  <ul className="horses-list">
+             <div className="chevaux">
+                  <Row className="bootstrap-horse-list">
                     {totalcheval.map(horse => {
                       return (
                         (horse.etat === '0') &&
-                      <HorseItem
-                        key={horse.id}
-                        id={horse.id}
-                        image={horse.image}
-                        name={horse.name}
-                        documents={horse.documents}
-                        price={horse.prix}
-                        bouton="ACHETER"
-                        buyHorse={() => acheterCheval(horse)}
-                      />
-
+                          <Col sm={12} md={6} lg={4} xl={3}>
+                            <HorseItem
+                              key={horse.id}
+                              id={horse.id}
+                              image={horse.image}
+                              name={horse.name}
+                              documents={horse.documents}
+                              price={horse.prix}
+                              prix="Prix :"
+                              ether="ether"
+                              bouton="ACHETER"
+                              buyHorse={() => acheterCheval(horse)}
+                            />
+                          </Col>
                       )
                     })}
-                  </ul>
+                  </Row>
                 </div>
 
                 {/*   <HorsesList items={totalcheval} bouton="ACHETER"/> */}
-                </div>
 
             </div>
         </div>
