@@ -6,7 +6,7 @@ import YellowButton from "../../home/components/YellowButton";
 import {Table} from 'react-bootstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const MyParts = props => {
+const MySailliesFake = props => {
 
   const [checked, setChecked] = React.useState(true);
 
@@ -19,7 +19,7 @@ const MyParts = props => {
       <AccountNavBar />
       <div className="horse-ccontainer" style={{backgroundColor: Colors.accentColor}}>
         <div className="title-parts">
-          <h5 className="horse-title">MES PARTS</h5>
+          <h5 className="horse-title">MES SAILLIES</h5>
           <div className="searchbar">
             <input type="text" placeholder="RECHERCHER"/>
           </div>
@@ -27,13 +27,13 @@ const MyParts = props => {
         <div className="parts-container">
           <div>
             <div className="parts-title">
-              <p>READY CASH</p>
-              <p>Liste de mes parts</p>
+              <p>DUCCIA DU MONT</p>
+              <p>Liste de mes saillies</p>
             </div>
 
             <div className="container3">
               <div className="part-card">
-                <img src="https://remeng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2020/08/26/node_185401/12093737/public/2020/08/26/B9724385098Z.1_20200826102530_000%2BG86GI3HG5.1-0.jpg?itok=vrETSARE1598439430" alt="cheval"/>
+                <img src="https://lemagdesanimaux.ouest-france.fr/images/dossiers/2019-06/cheval-073016.jpg" alt=""/>
                 <div className="part-card-inner">
                   <p><a href="/">Infos Etalon</a></p>
                   <p><a href="/">Infos SIRE</a></p>
@@ -44,20 +44,12 @@ const MyParts = props => {
                 <thead>
                 <tr>
                   <th>N° de part</th>
-                  <th>Vendre ma part</th>
+                  <th>Vendre ma saillie</th>
                   <th>Prix</th>
-                  <th>Saillie 2021</th>
+                  <th>Poulain vivant</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>27</td>
-                  <td>  <Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                  <td>
-                    <input type="text" placeholder="Prix" style={{width: '100%'}}/>
-                  </td>
-                  <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                </tr>
                 <tr>
                   <td>28</td>
                   <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
@@ -86,13 +78,13 @@ const MyParts = props => {
 
           <div>
             <div className="parts-title">
-              <p>GLORANIES DES NOES</p>
-              <p>Liste de mes parts</p>
+              <p>ESCARMOUCHE</p>
+              <p>Liste de mes saillies</p>
             </div>
 
             <div className="container3">
               <div className="part-card">
-                <img src="https://blog.defi-ecologique.com/wp-content/uploads/cheval-curly-hypoallergenique-476x249@2x.jpg" alt=""/>
+                <img src="https://cheval-partenaire.fr/wp-content/uploads/2019/04/shutterstock_609475808-700x500.jpg" alt=""/>
                 <div className="part-card-inner">
                   <p><a href="/">Infos Etalon</a></p>
                   <p><a href="/">Infos SIRE</a></p>
@@ -103,20 +95,12 @@ const MyParts = props => {
                 <thead>
                 <tr>
                   <th>N° de part</th>
-                  <th>Vendre ma part</th>
+                  <th>Vendre ma saillie</th>
                   <th>Prix</th>
-                  <th>Saillie 2021</th>
+                  <th>Poulain Vivant</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>16</td>
-                  <td>  <Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                  <td>
-                    <input type="text" placeholder="Prix" style={{width: '100%'}}/>
-                  </td>
-                  <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                </tr>
                 <tr>
                   <td>17</td>
                   <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
@@ -149,4 +133,4 @@ const MyParts = props => {
   )
 };
 
-export default MyParts;
+export default MySailliesFake;

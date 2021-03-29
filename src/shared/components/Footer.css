@@ -7,6 +7,7 @@
 
 .contact-container {
     text-align: center;
+  width: 40%;
 }
 
 h1 {
@@ -15,15 +16,24 @@ h1 {
 
 Input {
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .contact-form {
     margin-right: 10%;
-    width: 200px;
+    width: 30%;
 }
 
 .contact {
     background-color: black;
     color: white;
-    width: 250px;
+    width: 100%;
+}
+
+.contact-container p {
+  font-size: 30px;
+}
+
+.contact-container h1 {
+  font-size: 60px;
 }

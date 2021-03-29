@@ -59,7 +59,7 @@ const HomePage = props => {
       await Web3.givenProvider.enable();
       console.log('Provider', Web3.givenProvider)
       const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545")
-      const contrat = new web3.eth.Contract(abi, '0x7e0a49ECa03abb104e30853143800b6065a86A63', {})
+      const contrat = new web3.eth.Contract(abi, '0xd25D41918eBfC88eF7c46724948667b74E81A97E', {})
 
       const accounts = await web3.eth.getAccounts()
       console.log('accs', accounts);
@@ -72,7 +72,6 @@ const HomePage = props => {
 
       const chevaux = [];
       const totalchevaux = [];
-
       for (let i = 0; i < total; i++) {
         const cheval = await contrat.methods.chevalIndex(i).call();
         console.log(cheval)
@@ -80,6 +79,7 @@ const HomePage = props => {
       }
 
       for (let data in chevaux) {
+
         totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], Web3.utils.fromWei(chevaux[data][4], 'ether'), chevaux[data][5], chevaux[data][3], chevaux[data][2]))
       }
       // console.log(totalchevaux)
@@ -88,7 +88,7 @@ const HomePage = props => {
       console.log(totalcheval)
 
       const web3ws = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:7545'));
-      const contratWs = new web3ws.eth.Contract(abi, '0x7e0a49ECa03abb104e30853143800b6065a86A63', {});
+      const contratWs = new web3ws.eth.Contract(abi, '0xd25D41918eBfC88eF7c46724948667b74E81A97E', {});
       contratWs.events.Vente(null, (err, response) => {
         if (err) {
           console.warn('websocket', err)
@@ -192,7 +192,7 @@ const HomePage = props => {
                     {totalcheval.map(horse => {
                       return (
                         (horse.etat === '0') &&
-                        <Col sm={12} md={6} lg={4} xl={3}>
+                        <Col>
                           <HorseItem
                             key={horse.id}
                             id={horse.id}
@@ -201,7 +201,7 @@ const HomePage = props => {
                             documents={horse.documents}
                             price={horse.prix}
                             prix="Prix :"
-                            ether="ether"
+                            ether="euros"
                             bouton="ACHETER"
                             buyHorse={() => acheterCheval(horse)}
                           />

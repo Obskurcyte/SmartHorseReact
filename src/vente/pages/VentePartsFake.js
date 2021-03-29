@@ -8,7 +8,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import NavBarUnderline from "../../shared/components/NavBarUnderline";
 import './VenteSaillies.css'
 
-const MySaillies = props => {
+const VentePartsFake = props => {
 
   const [checked, setChecked] = React.useState(true);
 
@@ -34,54 +34,15 @@ const MySaillies = props => {
           <input type="text" placeholder="RECHERCHER"/>
         </div>
         <div className="parts-container">
+
           <div>
             <div className="parts-title">
-              <p>DUCCIA DU MONT</p>
+              <p>GLORANIE DES NOES</p>
             </div>
 
             <div className="container3">
               <div className="part-card">
-                <img src="https://lemagdesanimaux.ouest-france.fr/images/dossiers/2019-06/cheval-073016.jpg" alt=""/>
-                <div className="part-card-inner">
-                  <p><a href="/">Infos Etalon</a></p>
-                  <p><a href="/">Infos SIRE</a></p>
-                  <p><a href="/">Liste Porteurs de Part</a></p>
-                </div>
-              </div>
-              <Table striped bordered hover>
-                <thead>
-                <tr>
-                  <th>N° de saillie</th>
-                  <th>Acheter cette saillie</th>
-                  <th>Prix</th>
-                  <th>Poulain vivant</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>27</td>
-                  <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                  <td>170 000</td>
-                  <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                </tr>
-                </tbody>
-              </Table>
-            </div>
-            <div>
-              <YellowButton name="ACHETER" className1="buttton" className="bouton1" navigation="/vente-saillies"/>
-            </div>
-          </div>
-
-
-
-          <div>
-            <div className="parts-title">
-              <p>ESCARMOUCHE</p>
-            </div>
-
-            <div className="container3">
-              <div className="part-card">
-                <img src="https://cheval-partenaire.fr/wp-content/uploads/2019/04/shutterstock_609475808-700x500.jpg" alt=""/>
+                <img src="https://blog.defi-ecologique.com/wp-content/uploads/cheval-curly-hypoallergenique-476x249@2x.jpg" alt=""/>
                 <div className="part-card-inner">
                   <p><a href="/">Infos Etalon</a></p>
                   <p><a href="/">Infos SIRE</a></p>
@@ -94,7 +55,7 @@ const MySaillies = props => {
                   <th>N° de part</th>
                   <th>Vendre ma saillie</th>
                   <th>Prix</th>
-                  <th>Poulain Vivant</th>
+                  <th>Saillie 2021</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -102,7 +63,7 @@ const MySaillies = props => {
                   <td>16</td>
                   <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
                   <td>
-                   30 000
+                    40 000
                   </td>
                   <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
                 </tr>
@@ -122,4 +83,4 @@ const MySaillies = props => {
   )
 };
 
-export default MySaillies;
+export default VentePartsFake;

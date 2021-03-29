@@ -6,7 +6,7 @@ import YellowButton from "../../home/components/YellowButton";
 import {Table} from 'react-bootstrap';
 import Checkbox from '@material-ui/core/Checkbox';
 
-const MyParts = props => {
+const MyPartsFake = props => {
 
   const [checked, setChecked] = React.useState(true);
 
@@ -50,14 +50,6 @@ const MyParts = props => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>27</td>
-                  <td>  <Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                  <td>
-                    <input type="text" placeholder="Prix" style={{width: '100%'}}/>
-                  </td>
-                  <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                </tr>
                 <tr>
                   <td>28</td>
                   <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
@@ -110,14 +102,6 @@ const MyParts = props => {
                 </thead>
                 <tbody>
                 <tr>
-                  <td>16</td>
-                  <td>  <Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                  <td>
-                    <input type="text" placeholder="Prix" style={{width: '100%'}}/>
-                  </td>
-                  <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
-                </tr>
-                <tr>
                   <td>17</td>
                   <td><Checkbox inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} /></td>
                   <td>
@@ -149,4 +133,4 @@ const MyParts = props => {
   )
 };
 
-export default MyParts;
+export default MyPartsFake;

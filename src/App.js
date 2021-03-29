@@ -20,6 +20,10 @@ import onSaleHorseReducer from "./store/reducers/onsale-horses"
 import {Provider} from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import {combineReducers, createStore, applyMiddleware} from "redux";
+import MyPartsFake from "./horses/pages/MyPartsFake";
+import MySailliesFake from "./horses/pages/MySailliesFake";
+import VenteSailliesFake from "./vente/pages/VenteSailliesFake";
+import VentePartsFake from "./vente/pages/VentePartsFake";
 
 
 const App = () => {
@@ -53,6 +57,10 @@ const App = () => {
           <Route path="/ventejuments" exact component={VenteJuments} />
           <Route path="/venteparts" exact component={VenteParts} />
           <Route path="/ventesaillies" exact component={VenteSaillies} />
+          <Route path="/mes-parts" exact component={MyPartsFake} />
+          <Route path="/mes-saillies" exact component={MySailliesFake} />
+          <Route path="/vente-saillies" exact component={VenteSailliesFake} />
+          <Route path="/vente-parts" exact component={VentePartsFake} />
         </React.Fragment>
         </Provider>
 

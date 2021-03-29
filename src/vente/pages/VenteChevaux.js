@@ -4,12 +4,18 @@ import {useDispatch} from "react-redux";
 import AccountNavBar from "../../shared/components/AccountNavBar";
 import Colors from "../../shared/constants/Colors";
 import NavBarUnderline from "../../shared/components/NavBarUnderline";
-import './VenteChevaux.css'
+import './VenteChevaux.css';
 import Web3 from "web3";
 import {abi} from "../../abi";
 import Cheval from "../../models/horse";
 import HorseItem from "../components/HorseItem";
 import {Row, Col} from "react-bootstrap";
+import Fade from "@material-ui/core/Fade";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import {Formik} from "formik";
+import Button from "../../FormElements/Button";
+import Popper from "@material-ui/core/Popper";
 
 const VenteChevaux = props => {
 
@@ -27,12 +33,13 @@ const VenteChevaux = props => {
     ALIENE: "2"
   }
 
+  let totalcheval2 = []
   useEffect( () => {
     async function Provider () {
       await Web3.givenProvider.enable();
       console.log('Provider', Web3.givenProvider)
       const web3 = new Web3(Web3.givenProvider || "http://127.0.0.1:7545")
-      const contrat = new web3.eth.Contract(abi, '0x7e0a49ECa03abb104e30853143800b6065a86A63', {})
+      const contrat = new web3.eth.Contract(abi, '0xd25D41918eBfC88eF7c46724948667b74E81A97E', {})
 
       const accounts = await web3.eth.getAccounts()
       console.log('accs', accounts);
@@ -53,15 +60,13 @@ const VenteChevaux = props => {
       }
 
       for (let data in chevaux) {
-        totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], Web3.utils.fromWei(chevaux[data][4], 'ether'), chevaux[data][5], chevaux[data][3], chevaux[data][2]))
-      }
+        totalchevaux.push(new Cheval(chevaux[data][0], chevaux[data][1], Web3.utils.fromWei(chevaux[data][4], 'ether'), chevaux[data][5], chevaux[data][3], chevaux[data][2]))      }
       // console.log(totalchevaux)
       setTotalCheval(totalchevaux)
-      console.log(totalchevaux)
-      console.log(totalcheval)
+
 
       const web3ws = new Web3(new Web3.providers.WebsocketProvider('ws://127.0.0.1:7545'));
-      const contratWs = new web3ws.eth.Contract(abi, '0x7e0a49ECa03abb104e30853143800b6065a86A63', {});
+      const contratWs = new web3ws.eth.Contract(abi, '0xd25D41918eBfC88eF7c46724948667b74E81A97E', {});
       contratWs.events.Vente(null, (err, response) => {
         if (err) {
           console.warn('websocket', err)
@@ -90,6 +95,24 @@ const VenteChevaux = props => {
         dispatch(onSaleHorseActions.fetchOnSaleHorse())
     }, [dispatch]);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const [placement, setPlacement] = React.useState();
+
+  const cardHorse = document.querySelector('.blur');
+
+  const handleClick = (newPlacement) => (event) => {
+    setAnchorEl(event.currentTarget);
+    setOpen((prev) => placement !== newPlacement || !prev);
+    setPlacement(newPlacement);
+    if (!open) {
+      cardHorse.style.opacity = 0.4
+    }
+    if (open) {
+      cardHorse.style.opacity = 1
+    }
+
+  };
 
   const acheterCheval = (cheval) => {
       if (state.contrat) {
@@ -115,6 +138,8 @@ const VenteChevaux = props => {
       }
   }
 
+
+
   console.log('totalcheval', totalcheval);
 
     return (
@@ -136,11 +161,15 @@ const VenteChevaux = props => {
                 </div>
 
              <div className="chevaux">
-                  <Row className="bootstrap-horse-list">
+                  <Row className="bootstrap-horse-list blur">
                     {totalcheval.map(horse => {
+                      console.log(horse)
+                      const initialValues = {
+                        prix: ''
+                      }
                       return (
                         (horse.etat === '0') &&
-                          <Col sm={12} md={6} lg={4} xl={3}>
+                          <Col>
                             <HorseItem
                               key={horse.id}
                               id={horse.id}
@@ -149,10 +178,52 @@ const VenteChevaux = props => {
                               documents={horse.documents}
                               price={horse.prix}
                               prix="Prix :"
-                              ether="ether"
+                              ether="€"
                               bouton="ACHETER"
-                              buyHorse={() => acheterCheval(horse)}
+                              buyHorse={handleClick('top') }
                             />
+                            <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+                              {({TransitionProps}) => (
+                                <Fade {...TransitionProps} timeout={350}>
+                                  <Paper>
+                                    <Typography>
+                                      <div className="popper-container">
+                                        <h5 className="popper-title">Acheter</h5>
+                                        <div className="popper-undercontainer">
+                                          <Formik
+                                            initialValues={initialValues}
+                                            onSubmit={async values => {
+                                              acheterCheval(horse)
+                                            }}
+                                          >
+                                            {(props) => (
+                                              <div>
+                                                <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                                                  <p>Prix: </p>
+                                                  <input
+                                                    type="text"
+                                                    placeholder="Prix. ex: 10€"
+                                                    className="input-popper"
+                                                    value={props.values.prix}
+                                                    onChange={props.handleChange('prix')}/>
+                                                </div>
+                                                <div className="bouton-popper">
+                                                  <Button type="submit"
+                                                          onClick={() => props.handleSubmit()}>Acheter</Button>
+                                                </div>
+                                              </div>
+                                            )}
+                                          </Formik>
+
+
+                                        </div>
+
+                                      </div>
+                                    </Typography>
+                                  </Paper>
+                                </Fade>
+                              )}
+                            </Popper>
                           </Col>
                       )
                     })}

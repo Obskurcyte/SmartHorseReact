@@ -33,7 +33,7 @@ const Footer = props => {
                         placeholder="NOM"
                         id="NOM"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, width: 250}}
+                        style={{marginBottom: 7}}
                     />
                     <Input
                         inputtype="input"
@@ -41,7 +41,7 @@ const Footer = props => {
                         id="PRENOM"
                         placeholder="PRENOM"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, width: 250}}
+                        style={{marginBottom: 7}}
                     />
                     <Input
                         inputtype="input"
@@ -49,7 +49,7 @@ const Footer = props => {
                         id="ADRESSE"
                         placeholder="ADRESSE"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, width: 250}}
+                        style={{marginBottom: 7}}
                     />
                     <Input
                         inputtype="input"
@@ -57,7 +57,7 @@ const Footer = props => {
                         id="EMAIL"
                         placeholder="EMAIL"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, width: 250}}
+                        style={{marginBottom: 7}}
                     />
                     <Input
                         inputtype="input"
@@ -65,7 +65,7 @@ const Footer = props => {
                         id="TELEPHONE"
                         placeholder="TELEPHONE"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, width: 250}}
+                        style={{marginBottom: 7}}
                     />
                     <Input
                         inputtype="input"
@@ -73,7 +73,7 @@ const Footer = props => {
                         id="OBJET"
                         placeholder="OBJET"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, width: 250}}
+                        style={{marginBottom: 7}}
                     />
                     <Input
                         inputtype="input"
@@ -81,7 +81,7 @@ const Footer = props => {
                         id="MESSAGE"
                         placeholder="VOTRE MESSAGE ICI"
                         onInput={inputHandler}
-                        style={{marginBottom: 7, height: 100, width: 250}}
+                        style={{marginBottom: 7, height: 100}}
                     />
                     <button className="contact">ENVOYER</button>
                 </form>
